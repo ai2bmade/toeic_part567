@@ -122,6 +122,51 @@ sudo -u toeicbot git pull
 sudo systemctl restart toeic-rc-bot
 ```
 
+## Coolify Deploy
+
+Coolify에 배포할 때는 이 저장소를 Dockerfile 기반 앱으로 연결합니다.
+
+### 1. 기존 systemd 봇 중지
+
+Telegram long polling 봇은 같은 토큰으로 두 프로세스가 동시에 돌면 충돌할 수 있습니다. Coolify로 배포하기 전 기존 systemd 서비스를 중지합니다.
+
+```bash
+systemctl stop toeic-rc-bot
+systemctl disable toeic-rc-bot
+```
+
+### 2. Coolify에서 앱 생성
+
+1. Coolify 프로젝트로 이동합니다.
+2. `New Resource`를 선택합니다.
+3. `Public Repository` 또는 GitHub 연동 저장소를 선택합니다.
+4. Repository URL을 입력합니다.
+
+```text
+https://github.com/ai2bmade/toeic_part567
+```
+
+5. Build Pack은 `Dockerfile` 또는 `Docker`를 선택합니다.
+6. Port는 열 필요가 없습니다. 이 봇은 HTTP 서버가 아니라 Telegram long polling worker입니다.
+
+### 3. Environment Variables
+
+Coolify 앱의 Environment Variables에 다음 값을 추가합니다.
+
+```text
+TELEGRAM_BOT_TOKEN=BotFather에서 받은 토큰
+```
+
+### 4. Deploy
+
+`Deploy`를 누른 뒤 로그에서 다음 메시지를 확인합니다.
+
+```text
+TOEIC RC bot started with 60 learning questions and 10 mock questions.
+```
+
+그 다음 Telegram에서 `/start`, `/learn`을 보내 테스트합니다.
+
 ## Telegram Setup
 
 1. Telegram에서 `@BotFather`에게 `/newbot`을 보냅니다.
