@@ -1,0 +1,12 @@
+{
+  "name": "toeic-grammar-telegram-bot",
+  "version": "1.0.0",
+  "description": "TOEIC grammar study Telegram bot",
+  "type": "module",
+  "scripts": {
+    "start": "node src/bot.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
