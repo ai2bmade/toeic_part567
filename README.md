@@ -149,6 +149,8 @@ https://github.com/ai2bmade/toeic_part567
 5. Build Pack은 `Dockerfile` 또는 `Docker`를 선택합니다.
 6. Port는 열 필요가 없습니다. 이 봇은 HTTP 서버가 아니라 Telegram long polling worker입니다.
 
+Compose 방식으로 만들 경우 repo의 `docker-compose.yml`을 사용합니다. 이 경우에도 port/domain 설정은 필요 없습니다.
+
 ### 3. Environment Variables
 
 Coolify 앱의 Environment Variables에 다음 값을 추가합니다.

@@ -1,0 +1,8 @@
+services:
+  toeic-rc-bot:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      TELEGRAM_BOT_TOKEN: ${TELEGRAM_BOT_TOKEN}
+    restart: unless-stopped
